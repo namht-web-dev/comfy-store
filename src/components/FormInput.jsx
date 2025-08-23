@@ -2,7 +2,7 @@ const FormInput = ({ label, name, type, defaultValue }) => {
   return (
     <div className="w-full grid mx-auto">
       <fieldset className="fieldset">
-        <legend className="fieldset-legend">{label}</legend>
+        <legend className="fieldset-legend capitalize">{label}</legend>
         <input
           name={name}
           type={type}

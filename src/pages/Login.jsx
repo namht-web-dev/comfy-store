@@ -4,12 +4,15 @@ import { FormInput, SubmitBtn } from "../components";
 const Login = () => {
   return (
     <section className="grid place-items-center h-screen">
-      <Form className="card p-5 grid justify-center gap-5 w-96 " method="post">
+      <Form
+        className="card p-5 grid justify-center gap-5 w-96 shadow-lg"
+        method="post"
+      >
         <h1 className="text-4xl leading-8 font-bold text-center w-full block">
           Login
         </h1>
         <FormInput
-          type="text"
+          type="email"
           label="email"
           name="identifier"
           defaultValue="test@test.com"
@@ -26,7 +29,10 @@ const Login = () => {
         </button>
         <p className="text-center">
           Not a member yet?
-          <Link to="/register" className="text-primary px-5">
+          <Link
+            to="/register"
+            className="ml-2 link link-hover link-primary capitalize"
+          >
             Register
           </Link>
         </p>
