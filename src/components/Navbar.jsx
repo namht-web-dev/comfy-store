@@ -1,9 +1,28 @@
 import { Link } from "react-router-dom";
-import { Cart } from "../assets/icons/cart";
-import { Bar } from "../assets/icons/bar";
+import { Bar, Cart, Sun, Moon } from "../assets/icons";
 import NavLinks from "./NavLinks";
+import { useEffect, useState } from "react";
+
+const themes = {
+  winter: "winter",
+  dracula: "dracula",
+};
+
+const getInitialTheme = () => {
+  return localStorage.getItem("theme") || themes.dracula;
+};
 
 const Navbar = () => {
+  const [theme, setTheme] = useState(getInitialTheme());
+  const handleTheme = () => {
+    const newTheme = theme === themes.winter ? themes.dracula : themes.winter;
+    setTheme(newTheme);
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
   return (
     <nav className="bg-base-300 shadow-sm">
       <div className="navbar align-element">
@@ -36,6 +55,15 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end mr-2">
+          <label className="swap swap-rotate">
+            <input
+              type="checkbox"
+              onChange={handleTheme}
+              className="theme-controller"
+            />
+            <Sun />
+            <Moon />
+          </label>
           <div className="flex-none">
             <div className="dropdown dropdown-end">
               <div

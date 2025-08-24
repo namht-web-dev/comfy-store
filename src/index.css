@@ -1,8 +1,15 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: winter --default, dracula --prefersdark;
+}
+
+
 
 @layer components{
     .align-element{
         @apply mx-auto max-w-6xl p-2
+    }
+    .active{
+      @apply bg-primary;
     }
 }

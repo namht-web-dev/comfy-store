@@ -9,3 +9,4 @@ export { default as Checkout } from "./Checkout";
 export { default as SingleProduct } from "./SingleProduct";
 export { default as Orders } from "./Orders";
 export { default as Error } from "./Error";
+export { default as ErrorElement } from "./ErrorElement";
