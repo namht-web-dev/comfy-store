@@ -59,3 +59,41 @@ export const Moon = () => {
     </svg>
   );
 };
+
+export const List = ({ className, onClick }) => {
+  return (
+    <svg
+      onClick={onClick}
+      data-prefix="fas"
+      data-icon="list-ul"
+      role="img"
+      viewBox="0 0 512 512"
+      aria-hidden="true"
+      className={`btn w-10 h-10 p-3 rounded-2xl cursor-pointer ${className}`}
+    >
+      <path
+        fill="currentColor"
+        d="M48 144a48 48 0 1 0 0-96 48 48 0 1 0 0 96zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L192 64zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-288 0zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-288 0zM48 464a48 48 0 1 0 0-96 48 48 0 1 0 0 96zM96 256a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z"
+      ></path>
+    </svg>
+  );
+};
+
+export const Grid = ({ className, onClick }) => {
+  return (
+    <svg
+      onClick={onClick}
+      data-prefix="fas"
+      data-icon="grid-2"
+      role="img"
+      viewBox="0 0 448 512"
+      aria-hidden="true"
+      className={`btn w-10 h-10 p-3 rounded-2xl cursor-pointer ${className}`}
+    >
+      <path
+        fill="currentColor"
+        d="M192 80c0-26.5-21.5-48-48-48L48 32C21.5 32 0 53.5 0 80l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96zm0 256c0-26.5-21.5-48-48-48l-96 0c-26.5 0-48 21.5-48 48l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96zM256 80l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48l-96 0c-26.5 0-48 21.5-48 48zM448 336c0-26.5-21.5-48-48-48l-96 0c-26.5 0-48 21.5-48 48l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96z"
+      ></path>
+    </svg>
+  );
+};
