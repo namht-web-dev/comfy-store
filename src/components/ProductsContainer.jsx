@@ -14,7 +14,6 @@ const layouts = {
 const ProductsContainer = () => {
   const [layout, setLayout] = useState(layouts.grid);
   const { meta } = useLoaderData();
-
   const activeLayoutStyle = () => {
     return "bg-neutral-900";
   };
@@ -24,8 +23,8 @@ const ProductsContainer = () => {
       <Filters />
       <div className="flex justify-between items-center">
         <p className="font-bold text-xl text-primary">
-          {meta.pagination.total}{" "}
-          {meta.pagination.total > 1 ? "products" : "product"}
+          {meta.pagination.total}
+          {meta.pagination.total > 1 ? " products" : " product"}
         </p>
         <div className="flex gap-3">
           <Grid

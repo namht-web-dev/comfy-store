@@ -1,12 +1,18 @@
-const FormInput = ({ label, name, type, defaultValue }) => {
+const FormInput = ({
+  label,
+  name,
+  type,
+  defaultValue,
+  size = "input-md min-w-80",
+}) => {
   return (
     <div className="w-full grid mx-auto">
-      <fieldset className="fieldset">
-        <legend className="fieldset-legend capitalize">{label}</legend>
+      <fieldset>
+        <h4 className="py-2 capitalize">{label}</h4>
         <input
           name={name}
           type={type}
-          className="input min-w-80"
+          className={`input ${size}`}
           placeholder={name}
           defaultValue={defaultValue}
         />
