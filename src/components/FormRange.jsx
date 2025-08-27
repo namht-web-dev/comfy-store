@@ -12,7 +12,7 @@ const FormRange = ({ label, name, defaultValue }) => {
       <input
         type="range"
         name={name}
-        min={0}
+        min={step}
         max={maxPrice}
         step={step}
         value={selectedPrice}

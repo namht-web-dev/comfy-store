@@ -39,7 +39,9 @@ const ProductsContainer = () => {
       </div>
       {layouts.grid === layout ? <ProductsGrid /> : <ProductsList />}
 
-      <PaginationContainer />
+      <div className="text-center mt-5">
+        <PaginationContainer />
+      </div>
     </>
   );
 };
