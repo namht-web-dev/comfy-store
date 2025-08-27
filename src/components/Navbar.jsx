@@ -60,6 +60,7 @@ const Navbar = () => {
               type="checkbox"
               onChange={handleTheme}
               className="theme-controller"
+              checked={theme === themes.winter}
             />
             <Sun />
             <Moon />
