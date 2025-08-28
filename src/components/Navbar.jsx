@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { Bar, Cart, Sun, Moon } from "../assets/icons";
 import NavLinks from "./NavLinks";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { formatPrice } from "../utils";
 
 const themes = {
   winter: "winter",
@@ -23,6 +25,8 @@ const Navbar = () => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   }, [theme]);
+
+  const { numItemsInCart, cartTotal } = useSelector((state) => state.cartState);
   return (
     <nav className="bg-base-300 shadow-sm">
       <div className="navbar align-element">
@@ -75,7 +79,7 @@ const Navbar = () => {
                 <div className="indicator">
                   <Cart />
                   <span className="badge badge-sm indicator-item bg-primary">
-                    8
+                    {numItemsInCart}
                   </span>
                 </div>
               </div>
@@ -84,10 +88,14 @@ const Navbar = () => {
                 className="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow"
               >
                 <div className="card-body">
-                  <span className="text-lg font-bold">8 Items</span>
-                  <span className="text-info">Subtotal: $999</span>
+                  <span className="text-lg font-bold">
+                    {numItemsInCart} Items
+                  </span>
+                  <span className="text-info">
+                    Subtotal: {formatPrice(cartTotal)}
+                  </span>
                   <div className="card-actions">
-                    <Link to="/checkout" className="btn btn-primary btn-block">
+                    <Link to="/cart" className="btn btn-primary btn-block">
                       View cart
                     </Link>
                   </div>

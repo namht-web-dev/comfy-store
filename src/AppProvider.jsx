@@ -17,6 +17,8 @@ import {
 import { loader as landingLoader } from "./pages/Landing";
 import { loader as singleProductLoader } from "./pages/SingleProduct";
 import { loader as productsLoader } from "./pages/Products";
+import { Provider } from "react-redux";
+import { store } from "./store";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -70,7 +72,9 @@ const router = createBrowserRouter([
 const AppProvider = () => {
   return (
     <>
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </>
   );
 };
