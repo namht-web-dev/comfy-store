@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const initialState = {
   cartItems: [],
@@ -25,9 +26,9 @@ const cartSlice = createSlice({
       if (item) item.amount += product.amount;
       else state.cartItems.push(product);
       state.numItemsInCart += product.amount;
-      state.cartTotal += product.amount * product.price;
 
       cartSlice.caseReducers.calculateTotals(state);
+      toast.success("Item added to the cart!");
     },
     removeItem: (state, action) => {
       const { cartID } = action.payload;
@@ -37,13 +38,14 @@ const cartSlice = createSlice({
       cartSlice.caseReducers.calculateTotals(state);
     },
     editItem: (state, action) => {
-      const { cartID, amount, price } = action.payload.product;
+      const { cartID, amount } = action.payload;
       const item = state.cartItems.find(
         (cartItem) => cartItem.cartID === cartID
       );
-      state.cartTotal += amount - item.amount;
-      state.orderTotal += price * (amount - item.amount);
+
+      state.orderTotal += item.price * (amount - item.amount);
       state.numItemsInCart += amount - item.amount;
+      item.amount += amount - item.amount;
       cartSlice.caseReducers.calculateTotals(state);
     },
     clearAllItems: () => {
@@ -51,8 +53,8 @@ const cartSlice = createSlice({
       return initialState;
     },
     calculateTotals: (state) => {
-      state.tax = state.cartTotal * 0.1;
-      state.orderTotal = state.cartTotal + state.tax;
+      state.tax = state.orderTotal * 0.1;
+      state.orderTotal += state.tax;
       localStorage.setItem("cartState", JSON.stringify(state));
     },
   },
