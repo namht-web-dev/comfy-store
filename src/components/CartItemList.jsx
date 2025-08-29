@@ -14,25 +14,31 @@ const CartItemList = () => {
         return (
           <div className="grid grid-cols-9 p-3" key={cartID}>
             <div className="col-span-2">
-              <img className="w-32 h-32 rounded-md" src={image} alt={title} />
+              <img
+                className="size-24 md:w-32 md:h-32 rounded-md"
+                src={image}
+                alt={title}
+              />
             </div>
             <div className="col-span-2">
-              <h3 className="capitalize font-bold leading-9 tracking-wide">
+              <h3 className="capitalize font-bold md:leading-9 text-xs md:text-md tracking-wide">
                 {title}
               </h3>
-              <p className="leading-loose">{company}</p>
+              <p className="md:leading-loose text-xs md:text-md text-slate-500">
+                {company}
+              </p>
               <p className="flex items-center mt-2">
-                <span>Color</span>
+                <span className="text-xs">Color</span>
                 <button
-                  className="btn-xs btn-circle ml-3"
+                  className="size-4 btn-circle ml-3"
                   style={{ background: productColor }}
                 ></button>
               </p>
             </div>
-            <div className="col-span-2">
-              <p className="text-center">Amount</p>
+            <div className="col-span-2 flex flex-col items-center">
+              <p className="text-center text-xs md:text-md">Amount</p>
               <select
-                className="select select-secondary select-sm"
+                className="select select-secondary select-sm w-16"
                 name="amount"
                 value={amount}
                 onChange={(e) =>
@@ -43,7 +49,7 @@ const CartItemList = () => {
               </select>
               <button
                 onClick={() => dispatch(removeItem({ cartID }))}
-                className="text-error font-bold text-center w-full mt-2 btn btn-sm"
+                className="text-error font-bold text-center w-16 mt-2 btn btn-sm"
               >
                 remove
               </button>
