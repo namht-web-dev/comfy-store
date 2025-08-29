@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import FormSelect from "./FormSelect";
 import { formatPrice, generateAmountOptions } from "../utils";
-import { editItem } from "../features/cart/slice";
+import { editItem, removeItem } from "../features/cart/slice";
 
 const CartItemList = () => {
   const { cartItems } = useSelector((state) => state.cartState);
@@ -32,9 +32,8 @@ const CartItemList = () => {
             <div className="col-span-2">
               <p className="text-center">Amount</p>
               <select
-                className="select select-secondary select-md"
+                className="select select-secondary select-sm"
                 name="amount"
-                id="amount"
                 value={amount}
                 onChange={(e) =>
                   dispatch(editItem({ cartID, amount: e.target.value }))
@@ -42,7 +41,10 @@ const CartItemList = () => {
               >
                 {generateAmountOptions(amount + 3)}
               </select>
-              <button className="text-error font-bold text-center w-full mt-2 btn btn-sm">
+              <button
+                onClick={() => dispatch(removeItem({ cartID }))}
+                className="text-error font-bold text-center w-full mt-2 btn btn-sm"
+              >
                 remove
               </button>
             </div>

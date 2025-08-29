@@ -26,15 +26,21 @@ const cartSlice = createSlice({
       if (item) item.amount += product.amount;
       else state.cartItems.push(product);
       state.numItemsInCart += product.amount;
-
+      state.cartTotal += product.amount * product.price;
       cartSlice.caseReducers.calculateTotals(state);
       toast.success("Item added to the cart!");
     },
     removeItem: (state, action) => {
       const { cartID } = action.payload;
+      const item = state.cartItems.find(
+        (cartItem) => cartItem.cartID === cartID
+      );
+      state.cartTotal -= item.amount * item.price;
+      state.numItemsInCart -= item.amount;
       state.cartItems = state.cartItems.filter(
         (item) => item.cartID !== cartID
       );
+
       cartSlice.caseReducers.calculateTotals(state);
     },
     editItem: (state, action) => {
@@ -43,7 +49,7 @@ const cartSlice = createSlice({
         (cartItem) => cartItem.cartID === cartID
       );
 
-      state.orderTotal += item.price * (amount - item.amount);
+      state.cartTotal += item.price * (amount - item.amount);
       state.numItemsInCart += amount - item.amount;
       item.amount += amount - item.amount;
       cartSlice.caseReducers.calculateTotals(state);
@@ -53,8 +59,8 @@ const cartSlice = createSlice({
       return initialState;
     },
     calculateTotals: (state) => {
-      state.tax = state.orderTotal * 0.1;
-      state.orderTotal += state.tax;
+      state.tax = state.cartTotal * 0.1;
+      state.orderTotal += state.cartTotal + state.tax;
       localStorage.setItem("cartState", JSON.stringify(state));
     },
   },
