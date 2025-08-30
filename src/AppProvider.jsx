@@ -19,6 +19,8 @@ import { loader as singleProductLoader } from "./pages/SingleProduct";
 import { loader as productsLoader } from "./pages/Products";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import { action as loginAction } from "./pages/Login";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -62,6 +64,7 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+    action: loginAction(store),
   },
   {
     path: "/register",

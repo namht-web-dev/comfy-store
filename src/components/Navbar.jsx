@@ -1,30 +1,16 @@
 import { Link } from "react-router-dom";
 import { Bar, Cart, Sun, Moon } from "../assets/icons";
 import NavLinks from "./NavLinks";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { formatPrice } from "../utils";
-
-const themes = {
-  winter: "winter",
-  dracula: "dracula",
-};
-
-const getInitialTheme = () => {
-  return localStorage.getItem("theme") || themes.dracula;
-};
+import { toggleTheme } from "../features/user/userSlice";
 
 const Navbar = () => {
-  const [theme, setTheme] = useState(getInitialTheme());
+  const dispatch = useDispatch();
   const handleTheme = () => {
-    const newTheme = theme === themes.winter ? themes.dracula : themes.winter;
-    setTheme(newTheme);
+    dispatch(toggleTheme());
   };
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+  const { theme } = useSelector((state) => state.userState);
 
   const { numItemsInCart, cartTotal } = useSelector((state) => state.cartState);
   return (
@@ -64,7 +50,7 @@ const Navbar = () => {
               type="checkbox"
               onChange={handleTheme}
               className="theme-controller"
-              checked={theme === themes.winter}
+              checked={theme === "winter"}
             />
             <Sun />
             <Moon />
